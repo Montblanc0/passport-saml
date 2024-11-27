@@ -4,7 +4,7 @@ import { Strategy } from "passport-strategy";
 import * as sinon from "sinon";
 import { expect } from "chai";
 import { MultiSamlStrategy, AbstractStrategy } from "../src";
-import { SAML } from "@node-saml/node-saml";
+import { SAML } from "@montblanc0/node-saml";
 import {
   MultiStrategyConfig,
   RequestWithUser,
