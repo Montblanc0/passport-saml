@@ -179,14 +179,36 @@ object that represents the user.
 You need to provide a route corresponding to the `path` configuration parameter given to the
 strategy:
 
+#### Express v4.x
+
 The authentication callback must be invoked after the `body-parser` middleware.
 
 ```javascript
+// Express v4
 const bodyParser = require("body-parser");
 
 app.post(
   "/login/callback",
   bodyParser.urlencoded({ extended: false }),
+  passport.authenticate("saml", {
+    failureRedirect: "/",
+    failureFlash: true,
+  }),
+  function (req, res) {
+    res.redirect("/");
+  },
+);
+```
+
+#### Express v5.x
+
+The authentication callback must be invoked after the `express.urlencoded({ extended: false })` middleware.
+
+```javascript
+// Express v5
+app.post(
+  "/login/callback",
+  express.urlencoded({ extended: false }),
   passport.authenticate("saml", {
     failureRedirect: "/",
     failureFlash: true,
